@@ -43,7 +43,7 @@ const Transactions = ({ history }) => {
     if (token) {
       dispatch(saldo())
     }
-  }, [dispatch, history,token])
+  }, [dispatch, history, token])
 
   const transactionSaldo = useSelector((state) => state.transactionSaldo)
   const { saldoTotal } = transactionSaldo
@@ -64,7 +64,6 @@ const Transactions = ({ history }) => {
     dispatch(transfer(accountTransfer, accountTransferSender, amountTransfer, descTransfer));
   }
 
-  
   return (
     <Container>
       <Tabs>
@@ -248,7 +247,25 @@ const Transactions = ({ history }) => {
           </Form>
         </TabPanel>
         <TabPanel>
-          {/* isi code mutasi rekening disini */}
+        <div className="d-flex justify-content-center my-4">
+            <h1>SALDO</h1>
+          </div>
+        <div className="mb-5">
+            <h4>Total Saldo : {saldoTotal != null && saldoTotal.account ? saldoTotal.account.saldo : 0}</h4>
+        </div>
+        <Form.Group as={Row} controlId="formPlaintextAmount">
+              <Form.Label column sm="2">
+                Total Amount
+              </Form.Label>
+              <Col sm="10">
+                <Form.Control 
+                  type="amount" 
+                  placeholder={"Input the amount" }
+                  value={amountDeposit}
+                  onChange={(e) => setAmountDeposit(e.target.value)}
+                />
+              </Col>
+            </Form.Group>
         </TabPanel>
       </Tabs>
     </Container>
